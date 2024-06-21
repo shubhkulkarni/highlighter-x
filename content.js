@@ -92,7 +92,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     const key = window.location.href;
     chrome.storage.local.remove(key, () => {
       document
-        .querySelectorAll('span[style*="background-color: yellow"]')
+        .querySelectorAll('span[style*="background-color: #ffff2c"]')
         .forEach((span) => {
           span.outerHTML = span.innerHTML;
         });

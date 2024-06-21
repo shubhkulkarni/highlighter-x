@@ -81,3 +81,25 @@ document.getElementById("load-highlights").addEventListener("click", () => {
     alert("Invalid JSON");
   }
 });
+
+document
+  .getElementById("delete-site-highlights")
+  .addEventListener("click", () => {
+    const conf = confirm("Are you sure you want to delete highlights?");
+    if (conf) {
+      chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        const url = new URL(tabs[0].url);
+        const domain = url.origin;
+
+        chrome.storage.local.get(null, (items) => {
+          const keysToRemove = Object.keys(items).filter((key) =>
+            key.startsWith(domain)
+          );
+          chrome.storage.local.remove(keysToRemove, () => {
+            alert("Highlights deleted for current site");
+            chrome.tabs.reload(tabs[0].id);
+          });
+        });
+      });
+    }
+  });
