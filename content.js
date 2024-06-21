@@ -14,7 +14,11 @@ function highlightText(selection) {
   const key = window.location.href;
   chrome.storage.local.get([key], function (result) {
     let highlights = result[key] ? result[key] : [];
-    highlights.push({ text: selection.toString(), offset: range.startOffset });
+    highlights.push({
+      text: selection.toString(),
+      offset: range.startOffset,
+      pageTitle: document.title || key,
+    });
     chrome.storage.local.set({ [key]: highlights });
   });
 }
@@ -131,3 +135,9 @@ function clearSpecificHighlight() {
     selectedHighlight.classList.remove("highlighted-text-selected");
   }
 }
+
+chrome.runtime.onMessage.addListener(function (
+  request,
+  sender,
+  sendResponse
+) {});

@@ -3,7 +3,7 @@
   "name": "Highlighter X",
   "version": "1.0",
   "description": "Highlight text on any webpage and store the information.",
-  "permissions": ["storage", "activeTab", "scripting", "contextMenus"],
+  "permissions": ["storage", "activeTab", "scripting", "contextMenus", "tabs"],
   "background": {
     "service_worker": "background.js"
   },
@@ -18,7 +18,8 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["content.js"],
+      "run_at": "document_idle"
     }
   ],
   "commands": {
@@ -28,5 +29,11 @@
       },
       "description": "Highlight selected text"
     }
-  }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["jsPDF/jspdf.umd.min.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
 }
