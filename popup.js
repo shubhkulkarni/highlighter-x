@@ -5,6 +5,12 @@ document.getElementById("highlight-text").addEventListener("click", () => {
   });
 });
 
+document.getElementById("toggle-highlights").addEventListener("click", () => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    chrome.tabs.sendMessage(tabs[0].id, { action: "toggleHighlights" });
+  });
+});
+
 // Clear highlights button click event
 document.getElementById("clear-highlights").addEventListener("click", () => {
   const key = window.location.href;

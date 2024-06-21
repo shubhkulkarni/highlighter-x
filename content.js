@@ -19,6 +19,30 @@ function highlightText(selection) {
   });
 }
 
+// Function to toggle highlights
+function toggleHighlights() {
+  const highlights = document.querySelectorAll(".highlighted-text");
+  highlights.forEach((span) => {
+    console.log(span.style.backgroundColor);
+    if (
+      span?.style?.backgroundColor === "rgb(255, 255, 44)" ||
+      span?.styles?.padding === "2px 1px"
+    ) {
+      span.style.backgroundColor = "unset";
+      span.style.color = "unset";
+      span.style.borderRadius = "unset";
+      span.style.padding = "unset";
+      span.style.fontWeight = "unset";
+    } else {
+      span.style.backgroundColor = "#ffff2c";
+      span.style.color = "black";
+      span.style.borderRadius = "4px";
+      span.style.padding = "2px 1px";
+      span.style.fontWeight = "bold";
+    }
+  });
+}
+
 // Function to apply stored highlights
 function applyHighlights() {
   const key = window.location.href;
@@ -73,6 +97,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
           span.outerHTML = span.innerHTML;
         });
     });
+  } else if (request.action === "toggleHighlights") {
+    toggleHighlights();
   } else if (request.action === "clearSpecificHighlight") {
     clearSpecificHighlight();
   }
