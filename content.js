@@ -2,8 +2,11 @@
 function highlightText(selection) {
   const range = selection.getRangeAt(0);
   const span = document.createElement("span");
-  span.style.backgroundColor = "yellow";
+  span.style.backgroundColor = "#ffff2c";
   span.style.color = "black";
+  span.style.borderRadius = "4px";
+  span.style.padding = "2px 1px";
+  span.style.fontWeight = "bold";
   span.className = "highlighted-text";
   range.surroundContents(span);
 
@@ -36,8 +39,11 @@ function applyHighlights() {
             range.setStart(currentNode, index);
             range.setEnd(currentNode, index + highlight.text.length);
             const span = document.createElement("span");
-            span.style.backgroundColor = "yellow";
+            span.style.backgroundColor = "#ffff2c";
             span.style.color = "black";
+            span.style.borderRadius = "4px";
+            span.style.padding = "2px 1px";
+            span.style.fontWeight = "bold";
             span.className = "highlighted-text";
             range.surroundContents(span);
             break;

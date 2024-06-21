@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Text Highlighter",
+  "name": "Highlighter X",
   "version": "1.0",
   "description": "Highlight text on any webpage and store the information.",
   "permissions": ["storage", "activeTab", "scripting", "contextMenus"],
